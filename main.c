@@ -29,11 +29,11 @@ int main() {
     link_t* secondLink = calloc(1, sizeof(link_t));
     firstLink->next = secondLink;
 
-    int moreData = 234;
+    char moreData[] = "My name is Katie!";
     secondLink->data = &moreData;
 
-    int* data2ElectricBoogaloo = createdList->first->next->data;
-    printf("%i\n", *data2ElectricBoogaloo);
+    char* data2ElectricBoogaloo = createdList->first->next->data;
+    printf("%s\n", data2ElectricBoogaloo);
 
     destroy_list(createdList);
     return 0;
