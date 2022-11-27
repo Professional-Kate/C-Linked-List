@@ -23,6 +23,7 @@ int main() {
 
     destroy_list(createdList);
     return 0;
+    // testing
 }
 
 link_t* create_link(void* data) {
