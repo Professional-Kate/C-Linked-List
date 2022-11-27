@@ -21,9 +21,6 @@ int main() {
     int data = 32;
     createdList->first = create_link(&data);
 
-    int* firstData = createdList->first->data;
-    printf("%i\n", *firstData);
-
     destroy_list(createdList);
     return 0;
 }
@@ -31,7 +28,7 @@ int main() {
 link_t* create_link(void* data) {
     link_t* newLink = calloc(1, sizeof(link_t));
     newLink->data = data;
-    newLink->next = NULL;
+    newLink->next = NULL; // not needed but it's nice to be explicit
     
     return newLink;
 }
