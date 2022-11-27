@@ -3,6 +3,7 @@
 #include "linkedList.h"
 
 typedef struct link link_t;
+link_t* create_link(void* data);
 
 struct link {
     void* data;
@@ -17,26 +18,22 @@ struct list {
 int main() {
     list_t* createdList = create_list();
 
-    link_t* firstLink = calloc(1, sizeof(link_t));
-    createdList->first = firstLink;
+    int data = 32;
+    createdList->first = create_link(&data);
 
-    int data = 10;
-    firstLink->data = &data;
-
-    int* gottenData = createdList->first->data;
-    printf("%i\n", *gottenData);
-
-    link_t* secondLink = calloc(1, sizeof(link_t));
-    firstLink->next = secondLink;
-
-    char moreData[] = "My name is Katie!";
-    secondLink->data = &moreData;
-
-    char* data2ElectricBoogaloo = createdList->first->next->data;
-    printf("%s\n", data2ElectricBoogaloo);
+    int* firstData = createdList->first->data;
+    printf("%i\n", *firstData);
 
     destroy_list(createdList);
     return 0;
+}
+
+link_t* create_link(void* data) {
+    link_t* newLink = calloc(1, sizeof(link_t));
+    newLink->data = data;
+    newLink->next = NULL;
+    
+    return newLink;
 }
 
 list_t* create_list() {
