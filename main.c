@@ -42,13 +42,13 @@ list_t* create_list() {
 }
 
 void destroy_list(list_t* list) {
-    link_t* firstLink = list->first;
+    link_t* currentLink = list->first;
 
     while (1) {
-        if (firstLink == NULL) break;
+        if (currentLink == NULL) break;
         
-        link_t* temp = firstLink;
-        firstLink = firstLink->next;
+        link_t* temp = currentLink;
+        currentLink = currentLink->next;
         free(temp);
     }
     
