@@ -45,12 +45,13 @@ void destroy_list(list_t* list) {
     link_t* currentLink = list->first;
 
     while (1) {
-        if (currentLink == NULL) break;
+        if (currentLink == NULL) {
+            free(list);
+            break;
+        }
         
         link_t* temp = currentLink;
         currentLink = currentLink->next;
         free(temp);
     }
-    
-    free(list);
 }
