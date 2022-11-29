@@ -24,7 +24,6 @@ int main() {
     append(createdList, create_link(&data, NULL));
     append(createdList, create_link(&data, NULL));
 
-
     destroy_list(createdList);
     return 0;
 }
@@ -38,6 +37,7 @@ link_t* create_link(void* data, link_t* next) {
 }
 
 void append(list_t* list, void* linkToAppend) {
+    // we need to set the first link somehow
     if (list->first == NULL) {
         list->first = linkToAppend;
         return;
@@ -45,14 +45,11 @@ void append(list_t* list, void* linkToAppend) {
     
     link_t* link = list->first;
     
-    while (1) {
-        if (link->next == NULL) {
-            link->next = linkToAppend;
-            break;
-        }
-
+    while (link->next != NULL) {
         link = link->next;
     }
+    
+    link->next = linkToAppend;
 }
 
 list_t* create_list() {
@@ -63,15 +60,11 @@ list_t* create_list() {
 void destroy_list(list_t* list) {
     link_t* currentLink = list->first;
 
-    while (1) {
-        if (currentLink == NULL) {
-            free(list);
-            break;
-        }
-        printf("removed one\n");
-        
+    while (currentLink != NULL) {
         link_t* temp = currentLink;
         currentLink = currentLink->next;
         free(temp);
     }
+    
+    free(list);
 }
