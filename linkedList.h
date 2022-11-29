@@ -16,7 +16,7 @@ list_t* create_list();
 void destroy_list(list_t* list);
 
 // add a link to the end of the list
-void append(list_t* list, void* linkToAppend);
+void append(list_t* list, void* data);
 
 // iterator 
 // insertion

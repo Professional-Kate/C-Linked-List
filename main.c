@@ -19,10 +19,10 @@ int main() {
     list_t* createdList = create_list();
     
     int data = 24;
-    append(createdList, create_link(&data, NULL));
-    append(createdList, create_link(&data, NULL));
-    append(createdList, create_link(&data, NULL));
-    append(createdList, create_link(&data, NULL));
+    append(createdList, &data);
+    append(createdList, &data);
+    append(createdList, &data);
+    append(createdList, &data);
 
     destroy_list(createdList);
     return 0;
@@ -36,10 +36,12 @@ link_t* create_link(void* data, link_t* next) {
     return newLink;
 }
 
-void append(list_t* list, void* linkToAppend) {
+void append(list_t* list, void* data) {
+    link_t* createdLink = create_link(&data, NULL);
+    
     // we need to set the first link somehow
     if (list->first == NULL) {
-        list->first = linkToAppend;
+        list->first = createdLink;
         return;
     }
     
@@ -49,7 +51,7 @@ void append(list_t* list, void* linkToAppend) {
         link = link->next;
     }
     
-    link->next = linkToAppend;
+    link->next = createdLink;
 }
 
 list_t* create_list() {
