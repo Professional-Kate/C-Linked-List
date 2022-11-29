@@ -15,9 +15,6 @@ list_t* create_list();
 // destroy a created list using the passed pointer to the list
 void destroy_list(list_t* list);
 
-// add a link to the end of the list
-void append(list_t* list, void* data);
-
 // iterator 
 // insertion
 // lookup

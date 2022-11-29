@@ -4,6 +4,7 @@
 
 typedef struct link link_t;
 link_t* create_link(void* data, link_t* next);
+void append(list_t* list, void* data);
 
 struct link {
     void* data;
