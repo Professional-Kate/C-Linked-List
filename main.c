@@ -39,20 +39,19 @@ link_t* create_link(void* data, link_t* next) {
 
 void append(list_t* list, void* data) {
     link_t* createdLink = create_link(&data, NULL);
+    link_t* currentLink = list->first;
     
-    // we need to set the first link somehow
-    if (list->first == NULL) {
+    // sets the list->first if it's currently NULL
+    if (currentLink == NULL) {
         list->first = createdLink;
         return;
     }
     
-    link_t* link = list->first;
-    
-    while (link->next != NULL) {
-        link = link->next;
+    while (currentLink->next != NULL) {
+        currentLink = currentLink->next;
     }
-    
-    link->next = createdLink;
+
+    currentLink->next = createdLink;
 }
 
 list_t* create_list() {
