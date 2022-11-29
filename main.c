@@ -17,12 +17,13 @@ struct list {
 
 int main() {
     list_t* createdList = create_list();
-
-    int data = 32;
-    createdList->first = create_link(&data, NULL);
     
-    data = 34;
-    createdList->first->next = create_link(&data, NULL);
+    int data = 24;
+    append(createdList, create_link(&data, NULL));
+    append(createdList, create_link(&data, NULL));
+    append(createdList, create_link(&data, NULL));
+    append(createdList, create_link(&data, NULL));
+
 
     destroy_list(createdList);
     return 0;
@@ -34,6 +35,24 @@ link_t* create_link(void* data, link_t* next) {
     newLink->next = next; 
     
     return newLink;
+}
+
+void append(list_t* list, void* linkToAppend) {
+    if (list->first == NULL) {
+        list->first = linkToAppend;
+        return;
+    }
+    
+    link_t* link = list->first;
+    
+    while (1) {
+        if (link->next == NULL) {
+            link->next = linkToAppend;
+            break;
+        }
+
+        link = link->next;
+    }
 }
 
 list_t* create_list() {
@@ -49,6 +68,7 @@ void destroy_list(list_t* list) {
             free(list);
             break;
         }
+        printf("removed one\n");
         
         link_t* temp = currentLink;
         currentLink = currentLink->next;
