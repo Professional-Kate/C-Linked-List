@@ -21,9 +21,12 @@ int main() {
     
     int data = 24;
     append(createdList, &data);
+    data = 2425;
     append(createdList, &data);
+    data = 5252363;
     append(createdList, &data);
-    append(createdList, &data);
+    char* stringData = "Hello";
+    append(createdList, &stringData);
 
     destroy_list(createdList);
     return 0;
