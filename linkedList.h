@@ -18,7 +18,10 @@ void destroy_list(list_t* list);
 // iterator 
 // insertion
 // lookup
-// getting
+
+// get a specific element via an index. 0 based.
+void* get(list_t* list, int index);
+
 // count
 
 #endif //C_LINKED_LIST_LINKEDLIST_H

@@ -21,10 +21,6 @@ int main() {
     
     int data = 24;
     append(createdList, &data);
-    data = 2425;
-    append(createdList, &data);
-    data = 5252363;
-    append(createdList, &data);
     char* stringData = "Hello";
     append(createdList, &stringData);
 
@@ -55,6 +51,10 @@ void append(list_t* list, void* data) {
     }
 
     currentLink->next = createdLink;
+}
+
+void* get(list_t* list, int index) {
+    return list->first->data;
 }
 
 list_t* create_list() {
