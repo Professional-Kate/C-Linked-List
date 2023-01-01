@@ -19,10 +19,13 @@ struct list {
 int main() {
     list_t* createdList = create_list();
     
-    int data = 24;
-    append(createdList, &data);
-    char* stringData = "Hello";
-    append(createdList, &stringData);
+    int* allocatedData = calloc(1, sizeof(int));
+    *allocatedData = 24;
+    append(createdList, &allocatedData);
+
+    int* returnedData = get(createdList, 0);
+    printf("Pointer from get:    %p\n", returnedData);
+    printf("Original pointer:    %p\n", &allocatedData);
 
     destroy_list(createdList);
     return 0;
@@ -31,15 +34,15 @@ int main() {
 link_t* create_link(void* data, link_t* next) {
     link_t* newLink = calloc(1, sizeof(link_t));
     newLink->data = data;
-    newLink->next = next; 
+    newLink->next = next;
     
     return newLink;
 }
 
 void append(list_t* list, void* data) {
-    link_t* createdLink = create_link(&data, NULL);
+    link_t* createdLink = create_link(data, NULL);
     link_t* currentLink = list->first;
-    
+
     // sets the list->first if it's currently NULL
     if (currentLink == NULL) {
         list->first = createdLink;
